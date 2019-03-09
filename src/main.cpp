@@ -18,18 +18,22 @@ byte colPins[COLS] = {3, 4, 5}; // prev, play, next
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 void keypadEvent(KeypadEvent button) {
+  Serial.println("button pressed");
   switch(keypad.getState()) {
     case PRESSED:
       if (button == PREV_BUTTON) {
-        Keyboard.print("P");
+        Keyboard.print("p");
+        Serial.println("Prev");
       }
 
       if (button == PLAY_BUTTON) {
         Keyboard.print(" ");
+        Serial.println("Play");
       }
 
       if (button == NEXT_BUTTON) {
-        Keyboard.print("N");
+        Keyboard.print("n");
+        Serial.println("Next");
       }
       break;
   };
@@ -42,4 +46,5 @@ void setup() {
 }
 
 void loop() {
+  keypad.getKey();
 }
